@@ -21,8 +21,7 @@ int main(int argc, char *argv[])
     size_t len = 0;
     ssize_t lineSize = 0;
 
-    char directory[4096];
-    strcpy(directory, strdup(argv[1]));
+    char *directory = argv[1];
     strcat(directory, "/");
 
     //lineSize = getline(&line, &len, stdin);
