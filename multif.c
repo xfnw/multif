@@ -23,17 +23,16 @@ int main(int argc, char *argv[])
 
     char *directory = argv[1];
     strcat(directory, "/");
+    /* Scanning the in directory */
+    if (NULL == (FD = opendir (argv[1]))) 
+    {
+	fprintf(stderr, "Error : Failed to open input directory - %s\n", strerror(errno));
 
-    //lineSize = getline(&line, &len, stdin);
+	return 1;
+    }
+
     while (lineSize != -1)
     {
-	    /* Scanning the in directory */
-	    if (NULL == (FD = opendir (argv[1]))) 
-	    {
-		fprintf(stderr, "Error : Failed to open input directory - %s\n", strerror(errno));
-
-		return 1;
-	    }
 	    while ((in_file = readdir(FD))) 
 	    {
 
@@ -63,6 +62,7 @@ int main(int argc, char *argv[])
 		fclose(entry_file);
 		free(line);
 	    }
+	    rewinddir(FD);
     }
     return 0;
 }
