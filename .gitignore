@@ -1,1 +1,4 @@
 multif
+*.o
+*.a
+a
